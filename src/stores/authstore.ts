@@ -10,37 +10,28 @@ import { RouterLink } from "vue-router";
 export const useAuthStore = defineStore({
   id: "auth",
   state: () => ({
-    token: Cookies.get("auth"),
+    token: Cookies.get("Access-Token"),
   }),
   actions: {
     async signIn(login: any, password: any) {
       let result = null;
       axios
         .request({
-          url: `${URL}/login`,
+          url: `${URL}/auth`,
           method: "post",
-          headers: { "Content-Type": "application/json" },
-          data: JSON.stringify({ login: login, pass: password }),
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          data: `username=${login}&password=${password}`,
           withCredentials: true,
         })
         .then((response) => {
           if (response.status == 200) {
-            this.token = response.data.result;
-            Cookies.set(
-              "auth",
-              JSON.stringify({
-                token: this.token,
-                role: response.data.role,
-                id: response.data.user_id,
-              })
-            );
             router.back();
           } else {
             result = "Не удалось войти в систему";
           }
         })
         .catch((err) => {
-          alert("Логин/пароль указаны неверно.");
+          alert(err);
         });
       return result;
     },
@@ -49,7 +40,6 @@ export const useAuthStore = defineStore({
       let result = "";
     
       const id = uuidv4();
-      console.log("in request"); 
 
       axios
         .request({
@@ -79,7 +69,7 @@ export const useAuthStore = defineStore({
     
     logout() {
       token: null as string | null,
-      Cookies.remove("auth"); 
+      Cookies.remove("Access-Token"); 
       router.push("/");
     },
     approwe() {},

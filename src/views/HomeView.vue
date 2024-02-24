@@ -1,39 +1,47 @@
 <script setup lang="ts">
-import NavBar from "../components/NavBar.vue";
-import UsersSolutions from "@/components/UsersSolutions.vue";
+import { useRouter } from 'vue-router';
 import { useAuthStore } from "../stores/authstore";
-import backgroundImage from '@/src/assets/mainPage.png';
+import Courses from "../components/Courses.vue";
 
 const auth = useAuthStore();
+const router = useRouter();
 </script>
 
 <template>
-
-  <div
-    v-if="auth.token == null"
-    class="bg-image flex items-center justify-center h-screen relative isolate px-6 pt-14 md:text-center"
-  >
-  Добро пожаловать. Пожалуйста войдите в аккаунт.
-</div>
-  <div v-else>
-    <div v-if="auth.token.role">
-      <UsersSolutions />
-    </div>
-    <div
-      v-else
-      class="bg-image flex items-center justify-center h-screen relative isolate px-6 pt-14 md:text-center"
-    >
-      Здесь что-то будет
-    </div>
+  <div class="background-container">
+    <button @click="router.push('/login')" class="login-button">Войти</button>
+    <button @click="router.push('/register')" class="register-button">Зарегистрироваться</button>
   </div>
-  
 </template>
 
 <style scoped>
-.bg-image {
-  background-image: url('~@/src/assets/mainPage.png'); 
-  background-size: cover;
+.background-container {
+  background-image: url('../assets/static/mainPage.png');
+  background-size: cover; 
   background-position: center;
-  
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-button, .register-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button {
+  background-color: #008CBA; /* Blue */
+  color: white;
+}
+
+.register-button {
+  background-color: #f44336; /* Red */
+  color: white;
 }
 </style>

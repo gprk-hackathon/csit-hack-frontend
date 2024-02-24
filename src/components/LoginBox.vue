@@ -6,19 +6,16 @@ const auth = useAuthStore();
 export default {
   data: function () {
     return {
-      inputLogin: null,
-      inputPassword: null,
+      username: null,
+      password: null,
       response: null,
       err: "",
     };
   },
   methods: {
     async signin(_: Event) {
-      let result = await auth.signIn(this.inputLogin, this.inputPassword);
-      console.log(result);
-      if (result != null) {
-        this.err = result;
-      }
+      console.log(this.username, this.password);
+      let result = await auth.signIn(this.username, this.password);
     },
   },
 };
@@ -29,11 +26,11 @@ export default {
       <form @submit.prevent="signin" class="backdrop border rounded-lg px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="username">Логин</label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" v-model="inputLogin" id="username" type="text" placeholder="login" />
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" v-model="username" id="username" type="text" placeholder="login" />
         </div>
         <div class="mb-6">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="password">Пароль</label>
-          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" v-model="inputPassword" id="password" type="password" placeholder="******************" />
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" v-model="password" id="password" type="password" placeholder="******************" />
         </div>
         <div class="flex items-center justify-between">
           <button class="text-white bg-purple-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Войти</button>
