@@ -3,7 +3,6 @@ import router from "@/router";
 import { useAuthStore } from "@/stores/authstore";
 const auth = useAuthStore();
 export default {
-  props: ["is_reg"],
   data: function () {
     return {
       inputLogin: null,
@@ -70,10 +69,10 @@ export default {
           >
             Войти
           </button>
-          <form
+          <a
             class="inline-block align-baseline font-bold text-sm"
-            @submit.prevent="approveSolution"
-          /form>
+            href="/register"
+          >
             Регистрация
           </a>
         </div>

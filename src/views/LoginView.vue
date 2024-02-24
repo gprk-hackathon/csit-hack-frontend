@@ -5,5 +5,6 @@ import LoginBox from "@/components/LoginBox.vue";
 </script>
 
 <template>
+  <NavBar /> 
   <LoginBox />
 </template>

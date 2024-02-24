@@ -41,13 +41,13 @@ const auth = useAuthStore();
           >Выйти</a
         >
       </div>
-      <!-- <div v-else class="flex md:order-2 md:bg-green-50 md:order-2">
+      <div v-else class="flex md:order-2 md:bg-green-50 md:order-2">
         <a
           href="/login"
           class="text-black focus:ring-4 focus:outline-none font-medium rounded-md text-sm px-4 py-2 text-center mr-3 md:mr-0"
           >Войти</a
         >
-      </div> -->
+      </div>
     </div>
   </nav>
 </template>

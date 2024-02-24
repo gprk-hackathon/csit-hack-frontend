@@ -7,7 +7,42 @@ export const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: () => import("../views/MainView.vue"),
+      component: () => import("../views/HomeView.vue"),
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/LoginView.vue"),
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../views/RegisterView.vue"),
+    },
+    {
+      path: "/add-task",
+      name: "add-task",
+      component: () => import("../views/NewTaskView.vue"),
+    },
+    {
+      path: "/tasks",
+      name: "tasks",
+      component: () => import("../views/TasksView.vue"),
+    },
+    {
+      path: "/tasks/:id",
+      name: "task",
+      component: () => import("../views/TaskView.vue"),
+    },
+    {
+      path: "/tasks/:id/solutions",
+      name: "solutions",
+      component: () => import("../views/SolutionView.vue"),
+    },
+    {
+      path: "/tasks/:id/add-solution",
+      name: "task-solution",
+      component: () => import("../views/NewSolutionView.vue"),
     },
   ],
 });

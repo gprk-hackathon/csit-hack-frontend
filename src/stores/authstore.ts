@@ -32,7 +32,7 @@ export const useAuthStore = defineStore({
                 id: response.data.user_id,
               })
             );
-            location.reload();
+            router.back();
           } else {
             result = "Не удалось войти в систему";
           }
