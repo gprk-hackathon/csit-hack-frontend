@@ -2,16 +2,18 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { URL } from "@/config";
 import { router } from "@/router";
+import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 import type { Task } from "@/components/types";
 import { RouterLink } from "vue-router";
 
 export const useAuthStore = defineStore({
   id: "auth",
   state: () => ({
-    token: JSON.parse(localStorage.getItem("auth")),
+    token: Cookies.get("auth"),
   }),
   actions: {
-    async signIn(login, password) {
+    async signIn(login: any, password: any) {
       let result = null;
       axios
         .request({
@@ -24,7 +26,7 @@ export const useAuthStore = defineStore({
         .then((response) => {
           if (response.status == 200) {
             this.token = response.data.result;
-            localStorage.setItem(
+            Cookies.set(
               "auth",
               JSON.stringify({
                 token: this.token,
@@ -42,30 +44,47 @@ export const useAuthStore = defineStore({
         });
       return result;
     },
-    async register(login, email, password) {
+
+    async register(name: any, surname: any, patronymic: any, email: any, status: any, password: any) {
       let result = "";
+    
+      const id = uuidv4();
+      console.log("in request"); 
+
       axios
         .request({
           url: `${URL}/register`,
-          method: "post",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-          data: JSON.stringify({ login: login, pass: password, email: email }),
+          data: JSON.stringify({
+            id : id,
+            username : email, 
+            password: password, 
+            surname: surname,
+            name : name,
+            patronymic : patronymic,
+            role_id: status,
+          }),
           withCredentials: true,
         })
         .then(() => {
-          this.signIn(login, password);
+          this.signIn(email, password);
         })
         .catch((err) => {
           alert(err);
         });
+    
       return result;
     },
+    
     logout() {
-      this.token = null;
-      localStorage.removeItem("auth");
+      token: null as string | null,
+      Cookies.remove("auth"); 
       router.push("/");
     },
     approwe() {},
     addSolution(task: Task) {},
   },
 });
+
+

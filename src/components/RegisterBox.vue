@@ -2,22 +2,33 @@
 import { useAuthStore } from "@/stores/authstore";
 const auth = useAuthStore();
 export default {
-  data: function () {
+  data() {
     return {
-      inputLogin: null,
-      inputPassword: null,
+      inputName: null,
+      inputSurname: null,
+      inputPatronymic: null,
       inputEmail: null,
+      userStatus: null,
+      inputPassword: null,
+
       response: null,
       err: "",
     };
   },
+
   methods: {
     async register(_: Event) {
+      console.log("Before request"); 
+
       let result = await auth.register(
-        this.inputLogin,
+        this.inputName,
+        this.inputSurname,
+        this.inputPatronymic,
         this.inputEmail,
+        this.userStatus,
         this.inputPassword
       );
+
       console.log(result);
 
       if (result != null) {
@@ -36,28 +47,79 @@ export default {
       <form
         @submit.prevent="register"
         class="backdrop border rounded-lg px-8 pt-6 pb-8 mb-4"
+        style="background: rgba(255, 255, 255); backdrop-filter: blur(5px);"
+
       >
-        <div class="mb-4">
+        <div class="mb-1">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="username"
+            for="name"
           >
-            Логин
+            
           </label>
           <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            v-model="inputLogin"
-            id="username"
+            v-model="inputName"
+            id="name"
             type="text"
-            placeholder="login"
+            placeholder="name"
+          />
+        </div>
+
+        <div class="mb-2">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="surname"
+          >
+            
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            v-model="inputSurname"
+            id="surname"
+            type="text"
+            placeholder="surname"
+          />
+        </div>
+        <div class="mb-3">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="patronymic"
+          >
+            
+          </label>
+          <input
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            v-model="inputPatronymic"
+            id="patronymic"
+            type="text"
+            placeholder="patronymic"
           />
         </div>
         <div class="mb-4">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="userStatus"
+          >
+            
+        </label>
+          <select
+            v-model="userStatus"
+            id="userStatus"
+            class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          >
+            <option value="студент">Студент</option>
+            <option value="преподаватель">Преподаватель</option>
+          </select>
+        </div>
+
+
+        <div class="mb-5">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="email"
           >
-            Почта
+            
           </label>
           <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -67,19 +129,20 @@ export default {
             placeholder="email"
           />
         </div>
+
         <div class="mb-6">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="password"
           >
-            Пароль
+            
           </label>
           <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             v-model="inputPassword"
             id="password"
             type="password"
-            placeholder="******************"
+            placeholder="Пароль"
           />
         </div>
         <div class="flex items-center justify-center">
