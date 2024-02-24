@@ -5,6 +5,22 @@ import LoginBox from "@/components/LoginBox.vue";
 </script>
 
 <template>
-  <NavBar /> 
-  <LoginBox />
+  <div class="background-container">
+    <NavBar /> 
+    <LoginBox />
+  </div>
 </template>
+
+<style scoped>
+.background-container {
+  background-image: url('mainPage.png');
+  background-size: cover; 
+  background-position: center;
+  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+</style>
