@@ -14,7 +14,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://0.0.0.0:8000',
+        target: 'http://api.gprk.fun',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
