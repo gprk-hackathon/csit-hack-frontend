@@ -19,11 +19,10 @@ export default {
   mounted: function () {
     axios
       .request({
-        url: `${URL}/tasks`,
+        url: `${URL}/task/get_by_course_id/${this.$route.params.id}`,
         method: "get",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token.token,
         },
       })
       .then((response) => {

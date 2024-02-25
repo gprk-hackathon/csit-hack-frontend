@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import NavBar from "../components/NavBar.vue";
+import SideBar from "../components/SideBar.vue";
 import Tasks from "../components/Tasks.vue";
 import { useAuthStore } from "../stores/authstore";
 const auth = useAuthStore();
 </script>
 
 <template>
-  <NavBar />
-  <div v-if="auth.token">
-    <Tasks />
-  </div>
-  <div
-    v-else
-    class="flex items-center justify-center h-screen relative isolate px-6 pt-14 md:text-center"
-  >
-    <a class="inline-block align-baseline bg-gray-50" href="/register">
-      <u> Зарегистрируйтесь, пожалуйста</u>
-    </a>
-  </div>
+  <SideBar />
+  <Tasks />
 </template>

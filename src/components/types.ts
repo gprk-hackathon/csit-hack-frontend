@@ -1,11 +1,10 @@
 export type Task = {
-  name: string,
-  price: string,
-  contains: string,
-  tests: string,
+  id: string,
+  creater_id: string,
+  topic: string,
+  description: string,
   dataCreated: string,
-  endPointDate: string,
-  id: string
+  deadline: string
 }
 export type Course = {
   id: string,
