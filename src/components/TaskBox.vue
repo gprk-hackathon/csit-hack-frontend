@@ -13,6 +13,7 @@ export default {
     "deadline",
     "created",
     "course_id",
+    "property"
   ],
 };
 </script>

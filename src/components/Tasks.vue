@@ -28,13 +28,13 @@ export default {
       .then((response) => {
         console.log(response.data);
         this.tasks = response.data.map((task: Task) => ({
-          name: task.name,
-          price: task.price,
-          contains: task.contains,
-          tests: task.tests,
-          dataCreated: task.dataCreated,
-          endPointDate: task.endPointDate,
-          id: task.id
+          id: task.id,
+          creater_id: task.creater_id,
+          topic: task.topic,
+          description: task.description,
+          deadline: task.deadline,
+          created: task.created,
+          course_id: task.course_id
         }));
       });
     console.log(this.tasks);
@@ -48,11 +48,13 @@ export default {
     <div class="grid grid-cols-3 gap-y-10 gap-x-10">
       <template v-for="task in tasks">
         <TaskBox
-          :name="task.name"
-          :price="task.price"
-          :date_started="task.dataCreated"
-          :date_ended="task.endPointDate"
           :id="task.id"
+          :creater_id="task.creater_id"
+          :topic="task.topic"
+          :description="task.description"
+          :deadline="task.deadline"
+          :created="task.created"
+          :course_id="task.course_id"
           :property="true"
         />
       </template>
