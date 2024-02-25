@@ -25,7 +25,7 @@ export const useAuthStore = defineStore({
         })
         .then((response) => {
           if (response.status == 200) {
-            router.back();
+            router.push("/courses");
           } else {
             result = "Не удалось войти в систему";
           }
