@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useAuthStore } from "../stores/authstore";
 import { URL } from "@/config";
-import TaskBox from "@/components/TaskBox.vue";
+import Task from "@/components/Task.vue";
 import NavBar from "@/components/NavBar.vue";
 </script>
 
@@ -40,13 +40,12 @@ export default {
         this.course_id = response.data.course_id;
       });
   },
-  components: { TaskBox },
+  components: { Task },
 };
 </script>
 
 <template>
-  <NavBar />
-  <TaskBox
+  <Task
     :id="id"
     :creater_id="creater_id"
     :topic="topic"

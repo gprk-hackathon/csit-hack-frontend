@@ -40,9 +40,14 @@ export const router = createRouter({
       component: () => import("../views/TaskView.vue"),
     },
     {
-      path: "/tasks/:id/solutions",
-      name: "solutions",
-      component: () => import("../views/SolutionView.vue"),
+      path: "/add_task",
+      name: "add_task",
+      component: () => import("../views/AddTaskView.vue"),
+    },
+    {
+      path: "/add_course",
+      name: "add_course",
+      component: () => import("../views/AddCourseView.vue"),
     },
     {
       path: "/tasks/:id/add-solution",
