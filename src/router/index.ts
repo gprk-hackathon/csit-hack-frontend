@@ -27,7 +27,7 @@ export const router = createRouter({
     {
       path: "/courses",
       name: "courses",
-      component: () => import("../views/TasksView.vue"),
+      component: () => import("../views/CoursesView.vue"),
     },
     {
       path: "/tasks/:id",
@@ -48,13 +48,13 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  const publicPages = ["/", "/login", "/register"];
+  const publicPages = ["/", "/login", "/register", "/courses"];
   const authRequired = !publicPages.includes(to.path);
   const auth = useAuthStore();
 
-  if (authRequired && !auth.token) {
-    return "/login";
-  }
+  // if (authRequired && !auth.token) {
+    // return "/login";
+  // }
 });
 
 export default router;

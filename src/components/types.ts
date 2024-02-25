@@ -7,6 +7,11 @@ export type Task = {
   endPointDate: string,
   id: string
 }
+export type Course = {
+  id: string,
+  name: string,
+  description: string
+}
 export type Solution = {
   id: string,
   author_Id: string,

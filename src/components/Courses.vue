@@ -6,58 +6,49 @@ import { useAuthStore } from "../stores/authstore";
 <script lang="ts">
 import CourseBox from "./CourseBox.vue";
 import axios from "axios";
-import type { Task } from "./types";
+import type { Course } from "./types";
 import SideBar from "./SideBar.vue";
 const auth = useAuthStore();
 export default {
   data: function (): {
-    tasks: Task[];
+    courses: Course[];
   } {
     return {
-      tasks: [],
+      courses: [],
     };
   },
   mounted: function () {
     axios
       .request({
-        url: `${URL}/tasks`,
+        url: `${URL}/course`,
         method: "get",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token.token,
+          "Content-Type": "application/json"
         },
         withCredentials: true,
       })
       .then((response) => {
         console.log(response.data);
-        this.tasks = response.data.map((task: Task) => ({
-          name: task.name,
-          price: task.price,
-          contains: task.contains,
-          tests: task.tests,
-          dataCreated: task.dataCreated,
-          endPointDate: task.endPointDate,
-          id: task.id
+        this.courses = response.data.map((course: Course) => ({
+          id: course.id,
+          name: course.name,
+          description: course.description
         }));
       });
-    console.log(this.tasks);
+    console.log(this.courses);
   },
   components: { CourseBox },
 };
 </script>
 
 <template>
-  <SideBar />
   <div>
     <div class="grid grid-cols-1 gap-y-10 gap-x-10">
-      <template v-for="task in tasks" class="course-box">
+      <template v-for="course in courses" class="course-box">
         <CourseBox
-          :name="task.name"
-          :price="task.price"
-          :date_started="task.dataCreated"
-          :date_ended="task.endPointDate"
-          :id="task.id"
-          :property="true"
+          :name="course.name"
+          :description="course.description"
+          :id="course.id"
         />
       </template>
     </div>
