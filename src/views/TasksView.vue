@@ -6,6 +6,5 @@ const auth = useAuthStore();
 </script>
 
 <template>
-  <SideBar />
   <Tasks />
 </template>

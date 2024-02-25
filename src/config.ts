@@ -1,1 +1,1 @@
-export const URL = "http://api.gprk.fun"
+export const URL = "https://api.gprk.fun"

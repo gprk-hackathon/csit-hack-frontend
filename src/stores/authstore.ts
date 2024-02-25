@@ -21,7 +21,7 @@ export const useAuthStore = defineStore({
           method: "post",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           data: `username=${login}&password=${password}`,
-          withCredentials: true,
+          // withCredentials: true,
         })
         .then((response) => {
           if (response.status == 200) {
