@@ -19,20 +19,27 @@ export default {
   methods: {
     async register(_: Event) {
 
-      let result = await auth.register(
-        this.inputName,
-        this.inputSurname,
-        this.inputPatronymic,
-        this.inputEmail,
-        this.userStatus,
-        this.inputPassword
-      );
-
-      console.log(result);
-
-      if (result != null) {
-        this.err = result;
-      }
+      axios
+        .request({
+          url: `${URL}/course`,
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          data: JSON.stringify({
+            id : id,
+            username : email, 
+            password: password, 
+            surname: surname,
+            name : name,
+            patronymic : patronymic,
+            role_id: 1,
+          }),
+        })
+        .then(() => {
+          this.signIn(email, password);
+        })
+        .catch((err) => {
+          alert(err);
+        });
     },
   },
 };
