@@ -11,34 +11,33 @@ const auth = useAuthStore();
 export default {
   data() {
     return {
-      name: null,
-      price: null,
-      contains: null,
-      tests: null,
-      dataCreated: null,
-      endPointDate: null,
       id: null,
+      creater_id: null,
+      topic: null,
+      description: null,
+      deadline: null,
+      created: null,
+      course_id: null,
     };
   },
   mounted: function () {
     axios
       .request({
-        url: `${URL}/tasks/${this.$route.params.id}`,
+        url: `${URL}/task/${this.$route.params.id}`,
         method: "get",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.token.token,
         },
       })
       .then((response) => {
         console.log(response.data);
-        this.name = response.data.name;
-        this.price = response.data.price;
-        this.contains = response.data.contains;
-        this.tests = response.data.tests;
-        this.dataCreated = response.data.dataCreated;
-        this.endPointDate = response.data.endPointDate;
         this.id = response.data.id;
+        this.creater_id = response.data.creater_id;
+        this.topic = response.data.topic;
+        this.description = response.data.description;
+        this.deadline = response.data.deadline;
+        this.created = response.data.created;
+        this.course_id = response.data.course_id;
       });
   },
   components: { TaskBox },
@@ -48,11 +47,12 @@ export default {
 <template>
   <NavBar />
   <TaskBox
-    :name="name"
-    :price="price"
-    :context="contains"
-    :date_started="dataCreated"
-    :date_ended="endPointDate"
     :id="id"
+    :creater_id="creater_id"
+    :topic="topic"
+    :description="description"
+    :deadline="deadline"
+    :created="created"
+    :course_id="course_id"
   />
 </template>
