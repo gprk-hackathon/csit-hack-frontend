@@ -5,7 +5,7 @@ import AddCourseBox from "@/components/AddCourseBox.vue";
 
 <template>
   <div class="background-container">
-    <RegisterBox />
+    <AddCourseBox />
   </div>
 </template>
 

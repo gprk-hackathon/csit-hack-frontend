@@ -53,9 +53,8 @@ export const useAuthStore = defineStore({
             surname: surname,
             name : name,
             patronymic : patronymic,
-            role_id: status,
+            role_id: 1,
           }),
-          withCredentials: true,
         })
         .then(() => {
           this.signIn(email, password);

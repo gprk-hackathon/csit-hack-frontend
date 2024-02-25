@@ -18,7 +18,6 @@ export default {
 
   methods: {
     async register(_: Event) {
-      console.log("Before request"); 
 
       let result = await auth.register(
         this.inputName,
@@ -65,7 +64,7 @@ export default {
         alt="Rectangle11151"
         class="frame2-rectangle11"
       />
-      <button class="frame2-text" type="submit"><span>Зарегистрироваться</span></button>
+      <button class="frame2-text" type="submit"><span>Создать</span></button>
       <img
         src="../assets/static/rectangle14355-cscg-200h.png"
         alt="Rectangle14355"
@@ -76,39 +75,9 @@ export default {
         alt="Rectangle15359"
         class="frame2-rectangle15"
       />
-      <img
-        src="../assets/static/rectangle16360-s06-200h.png"
-        alt="Rectangle16360"
-        class="frame2-rectangle16"
-      />
-      <img
-        src="../assets/static/rectangle17361-4eo-200h.png"
-        alt="Rectangle17361"
-        class="frame2-rectangle17"
-      />
-      <img
-        src="../assets/static/rectangle18362-zsz-200h.png"
-        alt="Rectangle18362"
-        class="frame2-rectangle18"
-      />
-      <span class="frame2-text02"><span>Начнём?</span></span>
-      <input class="frame2-text04" v-model="inputName" id="name" type="text" placeholder="Имя">
-      <input class="frame2-text06" v-model="inputSurname" id="surname" type="text" placeholder="Фамилия">
-      <input class="frame2-text08" v-model="inputPatronymic" id="patronymic" type="text" placeholder="Отчество">
-      <input class="frame2-text10" v-model="inputEmail" id="email" type="text" placeholder="Электронная почта">
-      <input class="frame2-text12" v-model="inputPassword" id="password" type="password" placeholder="Пароль">
-      <span class="frame2-text14"><span>Студент</span></span>
-      <span class="frame2-text16"><span>Преподаватель</span></span>
-      <img
-        src="../assets/static/ellipse28367-177h-200h.png"
-        alt="Ellipse28367"
-        class="frame2-ellipse28"
-      />
-      <img
-        src="../assets/static/ellipse29370-iuyd-200h.png"
-        alt="Ellipse29370"
-        class="frame2-ellipse29"
-      />
+      <span class="frame2-text02"><span>Создание нового курса</span></span>
+      <input class="frame2-text04" v-model="name" id="name" type="text" placeholder="Название курса">
+      <input class="frame2-text06" v-model="description" id="description" type="text" placeholder="Описание курса">
     </div>
   </div>
   </form>
@@ -200,7 +169,7 @@ export default {
   top: 261px;
   left: 434px;
   width: 343px;
-  height: 46px;
+  height: 246px;
   position: absolute;
   border-radius: 10px;
 }
@@ -262,7 +231,8 @@ export default {
   top: 274px;
   left: 456px;
   color: rgba(0, 0, 0, 0.5);
-  height: auto;
+  height: 200px;
+  width: 300px;
   position: absolute;
   font-size: 16px;
   font-style: Regular;

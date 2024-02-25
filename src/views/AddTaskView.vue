@@ -5,7 +5,7 @@ import AddTaskBox from "@/components/AddTaskBox.vue";
 
 <template>
   <div class="background-container">
-    <RegisterBox />
+    <AddTaskBox />
   </div>
 </template>
 
